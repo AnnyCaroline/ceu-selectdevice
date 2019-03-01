@@ -56,12 +56,7 @@ namespace SelectDevice
                 #else
                     // get path of the executing assembly
                     string currentPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-<<<<<<< HEAD
-
                     string text = System.IO.File.ReadAllText(currentPath + @"\..\arduino-1.8.8\hardware\arduino\avr\boards.txt");
-=======
-                    string text = System.IO.File.ReadAllText(currentPath + @"\..\arduino-1.8.3\hardware\arduino\avr\boards.txt");
->>>>>>> 713f1f6cc0d047a0c5c711af70dadde1b55c8f58
                 #endif
 
                 this.dataGridView1.Rows.Clear();
@@ -164,6 +159,7 @@ namespace SelectDevice
             }else
             {
                 Console.WriteLine(txtBoard.Text + " " + txtPort.Text + " " + comboCPU.Text + " " + comboMCU.Text);
+                System.IO.File.WriteAllText(@"board.conf", txtBoard.Text + " " + txtPort.Text + " " + comboCPU.Text + " " + comboMCU.Text);
                 this.Close();
             }
             
