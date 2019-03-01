@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Management;
 using System.Reflection;
+using System.Configuration;
 
 namespace SelectDevice
 {
@@ -52,7 +53,7 @@ namespace SelectDevice
                 "SELECT * FROM Win32_PnPEntity WHERE ClassGuid=\"{4d36e978-e325-11ce-bfc1-08002be10318}\"");
 
                 #if DEBUG
-                    string text = System.IO.File.ReadAllText(@"absolute-path-to\arduino-1.8.8\hardware\arduino\avr\boards.txt");
+                    string text = System.IO.File.ReadAllText(ConfigurationManager.AppSettings["debugPath"]);
                 #else
                     // get path of the executing assembly
                     string currentPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
