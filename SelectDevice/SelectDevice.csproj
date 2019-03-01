@@ -37,6 +37,9 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>cib_192.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -97,6 +100,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\refresh1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icone.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cib.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cib_192.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="cib_192.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -150,6 +150,9 @@ namespace SelectDevice
         private void Form1_Load(object sender, EventArgs e)
         {
             loadBoards();
+
+            string[] openedPaths = Environment.GetCommandLineArgs();
+            btnCleanGlobal.Visible = (openedPaths.Length <= 1);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -160,7 +163,14 @@ namespace SelectDevice
             }else
             {
                 Console.WriteLine(txtBoard.Text + " " + txtPort.Text + " " + comboCPU.Text + " " + comboMCU.Text);
-                System.IO.File.WriteAllText(@"board.conf", txtBoard.Text + " " + txtPort.Text + " " + comboCPU.Text + " " + comboMCU.Text);
+
+                string[] openedPaths = Environment.GetCommandLineArgs();
+
+                string filePath = (openedPaths.Length > 1) && (File.GetAttributes(openedPaths[1]).HasFlag(FileAttributes.Directory))
+                    ? openedPaths[1] + @"\board.conf"
+                    : "../run/board.conf";
+
+                System.IO.File.WriteAllText(@filePath, txtBoard.Text + " " + txtPort.Text + " " + comboCPU.Text + " " + comboMCU.Text);
                 this.Close();
             }
             
@@ -230,6 +240,22 @@ namespace SelectDevice
         private void comboCPU_SelectedIndexChanged(object sender, EventArgs e)
         {
             comboMCU.SelectedIndex = comboCPU.SelectedIndex;
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnCleanGlobal_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(@"../run/board.conf"))
+            {
+                File.Delete(@"../run/board.conf");
+                MessageBox.Show("Global configuration cleaned successfully");
+            }
+            else
+                MessageBox.Show("There is no global configuration");
         }
     }
 }
