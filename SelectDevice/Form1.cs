@@ -183,8 +183,6 @@ namespace SelectDevice
                     filePath = System.Reflection.Assembly.GetEntryAssembly().Location + @"\..\..\run\board.conf";
                 }
 
-                MessageBox.Show(filePath);
-
                 System.IO.File.WriteAllText(@filePath, txtBoard.Text + " " + txtPort.Text + " " + comboCPU.Text + " " + comboMCU.Text);
                 this.Close();
             }
