@@ -165,10 +165,25 @@ namespace SelectDevice
                 Console.WriteLine(txtBoard.Text + " " + txtPort.Text + " " + comboCPU.Text + " " + comboMCU.Text);
 
                 string[] openedPaths = Environment.GetCommandLineArgs();
+                string filePath;
 
-                string filePath = (openedPaths.Length > 1) && (File.GetAttributes(openedPaths[1]).HasFlag(FileAttributes.Directory))
-                    ? openedPaths[1] + @"\board.conf"
-                    : "../run/board.conf";
+                if (openedPaths.Length > 1)
+                {
+                    if (File.GetAttributes(openedPaths[1]).HasFlag(FileAttributes.Directory))
+                    {
+                        filePath = openedPaths[1] + @"\board.conf";
+                    }
+                    else
+                    {
+                        filePath = openedPaths[1] + @"\..\board.conf";
+                    }
+                }
+                else
+                {
+                    filePath = System.Reflection.Assembly.GetEntryAssembly().Location + @"\..\..\run\board.conf";
+                }
+
+                MessageBox.Show(filePath);
 
                 System.IO.File.WriteAllText(@filePath, txtBoard.Text + " " + txtPort.Text + " " + comboCPU.Text + " " + comboMCU.Text);
                 this.Close();
