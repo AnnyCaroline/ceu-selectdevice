@@ -2,18 +2,22 @@
 
 Intended to be used together with [Céu-Maker](https://github.com/ceu-lang/ceu-maker), `SelectDevice` is an application that lists the connected Arduino boards and allows the user to select one.
 
-In Céu-Maker, all Céu-Arduino applications should contain a `board.conf` file, which defines for which Arduino board and port the application should be uploaded to. It stores 4 settings, separated by a blank space:
+In Céu-Maker, all Céu-Arduino applications should contain a `board.conf` file, which defines for which Arduino board and port the application should be uploaded to. It stores 3 settings, separated by a blank space:
 - ARD_BOARD
 - ARD_PORT
 - ARD_CPU
-- ARD_MCU
 
 If this file doesn't exists, the `Céu-Arduino.exe` run `SelectDevice` so the user select a connected board. This process generates a `board.conf` file in the application's folder. The following uploads will not ask for board selection, since the file already exists. If you want to change the upload configurations without change the `board.conf` manually, drag and drop your application's folder or file to `SelectDevice.exe`.
 
 There is also possible to define a global configuration, so all uploads uses it in case no `board.conf` is provided with the application.
 
 ## Dev notes
-This app was developed using Visual Studio Community 2017 and only supports devices from package "arduino" and arch "avr".
+This app was developed using Visual Studio Community 2017 and only supports boards from package "arduino" and arch "avr". Actually, it only supports boards from `/hardware/arduino/avr/` that have vid and pid specified. Here is the list for expected boards to work:
+- Arduino/Genuino Uno (tested)
+- Arduino/Genuino Mega or Mega 2560 (tested)
+- Arduino Mega ADK
+- Arduino Gemma
+- Arduino Uno WiFi
 
 ### Inspiration 
 The Arduino IDE uses the file *hardware\arduino\avr\boards.txt* to identify ports and boards. With a VID/PID combination we can identify the USB device that is plugged and then search in this file for more information, such as the name of the board.
@@ -47,3 +51,5 @@ https://forum.arduino.cc/index.php?topic=366484.0
 https://github.com/arduino/arduino/wiki/arduino-ide-1.5-3rd-party-hardware-specification
 - Visual Studio 2015: How to: Set Debug and Release Configurations  
 https://msdn.microsoft.com/en-us/library/wx0123s5.aspx
+- Add more explanation about --board parameters at manpage.adoc
+https://github.com/arduino/Arduino/issues/8716
