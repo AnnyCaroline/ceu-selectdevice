@@ -101,13 +101,12 @@ namespace SelectDevice
                             //Get b.menu.cpu.*.build.mcu 
                             Regex r = new Regex("(?<=" + b + Regex.Escape(".") + "menu" + Regex.Escape(".") + "cpu" + Regex.Escape(".") + "[0-9a-zA-Z]+" + Regex.Escape(".") + "build" + Regex.Escape(".") + "mcu=).+");
 
-                            string mcu = "";
                             string cpu = "";
                             bool firstFlag = true;
                             foreach (Match match in r.Matches(text.ToString()))
                             {
 
-                                //Get cpu of that mcu
+                                //Get CPUs
                                 string c = "";
                                 c = regex(b + Regex.Escape(".") + "menu" + Regex.Escape(".") + "cpu" + Regex.Escape(".") + "[0-9a-zA-Z]+" + Regex.Escape(".") + "build" + Regex.Escape(".") + "mcu=" + match.Value, text.ToString());
 
@@ -116,17 +115,13 @@ namespace SelectDevice
                                 if (firstFlag)
                                     firstFlag = false;
                                 else
-                                {
-                                    mcu += ",";
                                     cpu += ",";
-                                }
-                                    
-                                mcu += match.Value;
+
                                 cpu += arrC[3];
                             }
 
                             //Add to DataGrid
-                            this.dataGridView1.Rows.Add(port, b, name, pid, vid, sn, mcu, cpu);
+                            this.dataGridView1.Rows.Add(port, b, name, pid, vid, sn, cpu);
                         }
                     }
                 }
@@ -162,7 +157,7 @@ namespace SelectDevice
                 MessageBox.Show("Select a device in the above list");
             }else
             {
-                Console.WriteLine(txtBoard.Text + " " + txtPort.Text + " " + comboCPU.Text + " " + comboMCU.Text);
+                Console.WriteLine(txtBoard.Text + " " + txtPort.Text + " " + comboCPU.Text);
 
                 string[] openedPaths = Environment.GetCommandLineArgs();
                 string filePath;
@@ -183,7 +178,10 @@ namespace SelectDevice
                     filePath = System.Reflection.Assembly.GetEntryAssembly().Location + @"\..\..\run\board.conf";
                 }
 
-                System.IO.File.WriteAllText(@filePath, txtBoard.Text + " " + txtPort.Text + " " + comboCPU.Text + " " + comboMCU.Text);
+                System.IO.File.WriteAllText(@filePath, txtBoard.Text + " " + txtPort.Text + " " + comboCPU.Text);
+
+                MessageBox.Show("Board configuration recorded successfully");
+
                 this.Close();
             }
             
@@ -201,20 +199,13 @@ namespace SelectDevice
                 txtBoard.Text = Convert.ToString(selectedRow.Cells["board"].Value);
 
                 this.comboCPU.Items.Clear();
-                this.comboMCU.Items.Clear();
                 string cpus = Convert.ToString(selectedRow.Cells["cpu"].Value);
-                string mcus = Convert.ToString(selectedRow.Cells["mcu"].Value);
 
                 string[] arrCPUs = cpus.Split(',');
                 foreach (string cpu in arrCPUs)
                     comboCPU.Items.Add(cpu);
 
-                string[] arrMCUs = mcus.Split(',');
-                foreach (string mcu in arrMCUs)
-                    comboMCU.Items.Add(mcu);
-
                 comboCPU.SelectedIndex = 0;
-                comboMCU.SelectedIndex = 0;
 
                 //Hide comboCPU if no cpu selection is required
                 if (string.IsNullOrEmpty(cpus))
@@ -252,7 +243,7 @@ namespace SelectDevice
 
         private void comboCPU_SelectedIndexChanged(object sender, EventArgs e)
         {
-            comboMCU.SelectedIndex = comboCPU.SelectedIndex;
+
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

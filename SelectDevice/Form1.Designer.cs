@@ -31,14 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Port = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.board = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Name1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.VID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mcu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cpu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtPort = new System.Windows.Forms.TextBox();
             this.txtBoard = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -48,9 +40,14 @@
             this.comboCPU = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnRefresh = new System.Windows.Forms.Button();
-            this.comboMCU = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.btnCleanGlobal = new System.Windows.Forms.Button();
+            this.Port = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.board = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Name1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cpu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,7 +63,6 @@
             this.PID,
             this.VID,
             this.SN,
-            this.mcu,
             this.cpu});
             this.dataGridView1.Cursor = System.Windows.Forms.Cursors.Default;
             this.dataGridView1.Location = new System.Drawing.Point(26, 38);
@@ -77,57 +73,6 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
-            // 
-            // Port
-            // 
-            this.Port.HeaderText = "Port";
-            this.Port.Name = "Port";
-            this.Port.ReadOnly = true;
-            // 
-            // board
-            // 
-            this.board.HeaderText = "board";
-            this.board.Name = "board";
-            this.board.ReadOnly = true;
-            this.board.Visible = false;
-            // 
-            // Name1
-            // 
-            this.Name1.HeaderText = "Name";
-            this.Name1.Name = "Name1";
-            this.Name1.ReadOnly = true;
-            this.Name1.Width = 200;
-            // 
-            // PID
-            // 
-            this.PID.HeaderText = "PID";
-            this.PID.Name = "PID";
-            this.PID.ReadOnly = true;
-            // 
-            // VID
-            // 
-            this.VID.HeaderText = "VID";
-            this.VID.Name = "VID";
-            this.VID.ReadOnly = true;
-            // 
-            // SN
-            // 
-            this.SN.HeaderText = "SN";
-            this.SN.Name = "SN";
-            this.SN.ReadOnly = true;
-            this.SN.Width = 150;
-            // 
-            // mcu
-            // 
-            this.mcu.HeaderText = "mcu";
-            this.mcu.Name = "mcu";
-            this.mcu.ReadOnly = true;
-            // 
-            // cpu
-            // 
-            this.cpu.HeaderText = "cpu";
-            this.cpu.Name = "cpu";
-            this.cpu.ReadOnly = true;
             // 
             // txtPort
             // 
@@ -214,26 +159,6 @@
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.button2_Click);
             // 
-            // comboMCU
-            // 
-            this.comboMCU.FormattingEnabled = true;
-            this.comboMCU.Location = new System.Drawing.Point(140, 251);
-            this.comboMCU.Name = "comboMCU";
-            this.comboMCU.Size = new System.Drawing.Size(121, 21);
-            this.comboMCU.TabIndex = 14;
-            this.comboMCU.Visible = false;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(137, 235);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(27, 13);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "mcu";
-            this.label4.Visible = false;
-            this.label4.Click += new System.EventHandler(this.label4_Click);
-            // 
             // btnCleanGlobal
             // 
             this.btnCleanGlobal.Location = new System.Drawing.Point(26, 230);
@@ -244,6 +169,52 @@
             this.btnCleanGlobal.UseVisualStyleBackColor = true;
             this.btnCleanGlobal.Click += new System.EventHandler(this.btnCleanGlobal_Click);
             // 
+            // Port
+            // 
+            this.Port.HeaderText = "Port";
+            this.Port.Name = "Port";
+            this.Port.ReadOnly = true;
+            // 
+            // board
+            // 
+            this.board.HeaderText = "board";
+            this.board.Name = "board";
+            this.board.ReadOnly = true;
+            this.board.Visible = false;
+            // 
+            // Name1
+            // 
+            this.Name1.HeaderText = "Name";
+            this.Name1.Name = "Name1";
+            this.Name1.ReadOnly = true;
+            this.Name1.Width = 200;
+            // 
+            // PID
+            // 
+            this.PID.HeaderText = "PID";
+            this.PID.Name = "PID";
+            this.PID.ReadOnly = true;
+            // 
+            // VID
+            // 
+            this.VID.HeaderText = "VID";
+            this.VID.Name = "VID";
+            this.VID.ReadOnly = true;
+            // 
+            // SN
+            // 
+            this.SN.HeaderText = "SN";
+            this.SN.Name = "SN";
+            this.SN.ReadOnly = true;
+            this.SN.Width = 150;
+            // 
+            // cpu
+            // 
+            this.cpu.HeaderText = "cpu";
+            this.cpu.Name = "cpu";
+            this.cpu.ReadOnly = true;
+            this.cpu.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -251,8 +222,6 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(748, 285);
             this.Controls.Add(this.btnCleanGlobal);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.comboMCU);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.comboCPU);
@@ -285,17 +254,14 @@
         private System.Windows.Forms.ComboBox comboCPU;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnRefresh;
-        private System.Windows.Forms.ComboBox comboMCU;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnCleanGlobal;
         private System.Windows.Forms.DataGridViewTextBoxColumn Port;
         private System.Windows.Forms.DataGridViewTextBoxColumn board;
         private System.Windows.Forms.DataGridViewTextBoxColumn Name1;
         private System.Windows.Forms.DataGridViewTextBoxColumn PID;
         private System.Windows.Forms.DataGridViewTextBoxColumn VID;
         private System.Windows.Forms.DataGridViewTextBoxColumn SN;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mcu;
         private System.Windows.Forms.DataGridViewTextBoxColumn cpu;
-        private System.Windows.Forms.Button btnCleanGlobal;
     }
 }
 
